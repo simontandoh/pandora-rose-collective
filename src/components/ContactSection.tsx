@@ -1,5 +1,12 @@
 import { useState } from "react";
 import { Send, Check } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const budgetOptions = [
   "Under $1,000",
@@ -131,20 +138,28 @@ export function ContactSection() {
                 >
                   Budget Range
                 </label>
-                <select
-                  id="budget"
-                  name="budget"
+                <Select
                   value={formData.budget}
-                  onChange={handleChange}
-                  className="input-luxury bg-transparent cursor-pointer"
+                  onValueChange={(value) => setFormData({ ...formData, budget: value })}
                 >
-                  <option value="">Select budget</option>
-                  {budgetOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger
+                    id="budget"
+                    className="input-luxury rounded-full border border-border/60 px-4 py-3 text-left"
+                  >
+                    <SelectValue placeholder="Select budget" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-2xl border-border/60 bg-card/95 text-foreground shadow-xl backdrop-blur">
+                    {budgetOptions.map((option) => (
+                      <SelectItem
+                        key={option}
+                        value={option}
+                        className="rounded-xl focus:bg-accent/20 focus:text-foreground"
+                      >
+                        {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <label
@@ -153,20 +168,30 @@ export function ContactSection() {
                 >
                   Deliverable Type
                 </label>
-                <select
-                  id="deliverable"
-                  name="deliverable"
+                <Select
                   value={formData.deliverable}
-                  onChange={handleChange}
-                  className="input-luxury bg-transparent cursor-pointer"
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, deliverable: value })
+                  }
                 >
-                  <option value="">Select type</option>
-                  {deliverableOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger
+                    id="deliverable"
+                    className="input-luxury rounded-full border border-border/60 px-4 py-3 text-left"
+                  >
+                    <SelectValue placeholder="Select type" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-2xl border-border/60 bg-card/95 text-foreground shadow-xl backdrop-blur">
+                    {deliverableOptions.map((option) => (
+                      <SelectItem
+                        key={option}
+                        value={option}
+                        className="rounded-xl focus:bg-accent/20 focus:text-foreground"
+                      >
+                        {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 
