@@ -1,33 +1,34 @@
 import { ArrowRight, Camera, Video, Smartphone, Link, Sparkles } from "lucide-react";
+import { Section } from "@/components/Section";
 
 const services = [
   {
     icon: Camera,
     title: "UGC Packages",
     description: "Photo + video content bundles tailored to your campaign goals.",
-    includes: ["3–10 high-res images", "1–3 edited video clips", "Raw files available"],
-    turnaround: "7–10 days",
+    includes: ["3-10 high-res images", "1-3 edited video clips", "Raw files available"],
+    turnaround: "7-10 days",
   },
   {
     icon: Video,
     title: "Instagram Reels",
     description: "Vertical video content optimized for engagement and reach.",
     includes: ["Hook-driven edits", "Trending audio integration", "Caption copy"],
-    turnaround: "5–7 days",
+    turnaround: "5-7 days",
   },
   {
     icon: Smartphone,
     title: "TikTok Videos",
     description: "Native-feeling content designed for the platform's algorithm.",
     includes: ["On-trend concepts", "Sound selection", "Performance insights"],
-    turnaround: "5–7 days",
+    turnaround: "5-7 days",
   },
   {
     icon: Link,
     title: "Stories + Link Integration",
     description: "Swipe-up ready content with direct conversion tracking.",
-    includes: ["3–5 story frames", "CTA optimization", "Link tracking"],
-    turnaround: "3–5 days",
+    includes: ["3-5 story frames", "CTA optimization", "Link tracking"],
+    turnaround: "3-5 days",
   },
   {
     icon: Sparkles,
@@ -54,20 +55,27 @@ export function ServicesSection() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const lenis = window.__lenis;
+      if (lenis) {
+        lenis.scrollTo(element, { offset: 0, immediate: false });
+      } else {
+        element.scrollIntoView({ behavior: "auto" });
+      }
     }
   };
 
   return (
-    <section id="services" className="section-padding bg-card/30">
+    <Section id="work" className="bg-card/30">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="label-accent mb-4">Services</div>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-6">
-            Work With Me
+          <div className="label-accent mb-4" data-stagger>
+            Work
+          </div>
+          <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-6" data-stagger>
+            Signature deliverables
           </h2>
-          <p className="text-muted-foreground font-sans text-lg">
+          <p className="text-muted-foreground font-sans text-lg" data-stagger>
             Premium content solutions for brands seeking elevated, authentic
             representation.
           </p>
@@ -76,7 +84,7 @@ export function ServicesSection() {
         {/* Service Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {services.map((service) => (
-            <div key={service.title} className="service-card group">
+            <div key={service.title} className="service-card group" data-stagger>
               <service.icon className="w-8 h-8 text-accent mb-6" />
               <h3 className="font-serif text-xl font-medium mb-3">
                 {service.title}
@@ -86,11 +94,8 @@ export function ServicesSection() {
               </p>
               <ul className="space-y-2 mb-6">
                 {service.includes.map((item) => (
-                  <li
-                    key={item}
-                    className="text-sm text-foreground flex items-start gap-2"
-                  >
-                    <span className="text-accent mt-1">•</span>
+                  <li key={item} className="text-sm text-foreground flex items-start gap-2">
+                    <span className="text-accent mt-1">-</span>
                     {item}
                   </li>
                 ))}
@@ -111,7 +116,7 @@ export function ServicesSection() {
         </div>
 
         {/* Packages */}
-        <div className="bg-background border border-border/50 p-8 md:p-12 mb-16">
+        <div className="bg-background border border-border/50 p-8 md:p-12 mb-16" data-stagger>
           <h3 className="font-serif text-2xl font-medium text-center mb-8">
             Package Tiers
           </h3>
@@ -138,7 +143,7 @@ export function ServicesSection() {
         </div>
 
         {/* Process */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12" data-stagger>
           <h3 className="font-sans text-sm font-semibold tracking-wide uppercase mb-8 text-foreground">
             The Process
           </h3>
@@ -163,15 +168,12 @@ export function ServicesSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center">
-          <button
-            onClick={() => scrollToSection("#contact")}
-            className="btn-primary"
-          >
+        <div className="text-center" data-stagger>
+          <button onClick={() => scrollToSection("#contact")} className="btn-primary">
             Start a Project
           </button>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -3,9 +3,8 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Book", href: "#book" },
+  { label: "Work", href: "#work" },
+  { label: "Signature", href: "#signature" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -24,7 +23,12 @@ export function Header() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const lenis = window.__lenis;
+      if (lenis) {
+        lenis.scrollTo(element, { offset: -10, immediate: false });
+      } else {
+        element.scrollIntoView({ behavior: "auto" });
+      }
     }
     setIsMobileMenuOpen(false);
   };
@@ -33,7 +37,7 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border/50 py-4"
+          ? "bg-background/85 backdrop-blur-md border-b border-border/40 py-4"
           : "bg-transparent py-6"
       }`}
     >
@@ -43,7 +47,12 @@ export function Header() {
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            const lenis = window.__lenis;
+            if (lenis) {
+              lenis.scrollTo(0, { immediate: false });
+            } else {
+              window.scrollTo({ top: 0, behavior: "auto" });
+            }
           }}
           className="font-serif text-xl md:text-2xl font-medium tracking-tight text-foreground"
         >
@@ -66,7 +75,7 @@ export function Header() {
             </a>
           ))}
           <button
-            onClick={() => scrollToSection("#services")}
+            onClick={() => scrollToSection("#work")}
             className="btn-primary"
           >
             Work With Me
@@ -89,7 +98,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-md border-b border-border/50 animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border/50 animate-fade-in">
           <nav className="flex flex-col px-6 py-8 gap-6">
             {navItems.map((item) => (
               <a
@@ -105,7 +114,7 @@ export function Header() {
               </a>
             ))}
             <button
-              onClick={() => scrollToSection("#services")}
+              onClick={() => scrollToSection("#work")}
               className="btn-primary w-full text-center mt-4"
             >
               Work With Me

@@ -17,7 +17,12 @@ export function Footer() {
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
+              const lenis = window.__lenis;
+              if (lenis) {
+                lenis.scrollTo(0, { immediate: false });
+              } else {
+                window.scrollTo({ top: 0, behavior: "auto" });
+              }
             }}
             className="font-serif text-2xl font-medium tracking-tight"
           >
@@ -53,7 +58,7 @@ export function Footer() {
 
         {/* Bottom Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/50">
-          <p>© {new Date().getFullYear()} Pandora Rose. All rights reserved.</p>
+          <p>(c) {new Date().getFullYear()} Pandora Rose. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a
               href="#"

@@ -1,27 +1,28 @@
 import { Check, Users, Globe, Clock } from "lucide-react";
 import aboutImage from "@/assets/about-portrait.jpg";
+import { Section } from "@/components/Section";
 
 const expectations = [
   "Taste-led creative direction",
-  "Fast turnaround (7–14 days)",
+  "Fast turnaround (7-14 days)",
   "Brand-safe, premium execution",
   "Flexible usage rights options",
 ];
 
 const demographics = [
-  { icon: Users, label: "Primary Age", value: "25–44" },
+  { icon: Users, label: "Primary Age", value: "25-44" },
   { icon: Globe, label: "Top Markets", value: "US, UK, UAE" },
   { icon: Clock, label: "Avg. Watch Time", value: "45 sec" },
 ];
 
 export function AboutSection() {
   return (
-    <section id="about" className="section-padding bg-background">
+    <Section id="about" className="bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image */}
-          <div className="relative">
-            <div className="aspect-[3/4] overflow-hidden bg-card">
+          <div className="relative" data-stagger>
+            <div className="aspect-[3/4] overflow-hidden bg-card border border-border/40">
               <img
                 src={aboutImage}
                 alt="Pandora Rose - About"
@@ -34,24 +35,26 @@ export function AboutSection() {
 
           {/* Content */}
           <div>
-            <div className="label-accent mb-4">About</div>
-            <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-6">
+            <div className="label-accent mb-4" data-stagger>
+              About
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-6" data-stagger>
               Creating moments of quiet luxury
             </h2>
-            <p className="text-muted-foreground font-sans text-lg leading-relaxed mb-8">
-              I'm Pandora Rose—a content creator and brand partner specializing in
+            <p className="text-muted-foreground font-sans text-lg leading-relaxed mb-8" data-stagger>
+              I'm Pandora Rose - a content creator and brand partner specializing in
               elevated lifestyle, beauty, and travel content. My work bridges the
               gap between aspirational aesthetics and authentic storytelling,
               connecting premium brands with an engaged, discerning audience.
             </p>
-            <p className="text-muted-foreground font-sans leading-relaxed mb-10">
+            <p className="text-muted-foreground font-sans leading-relaxed mb-10" data-stagger>
               With a refined visual language and commitment to excellence, I help
               brands tell their stories through content that feels effortless yet
-              intentional—the hallmark of true luxury.
+              intentional - the hallmark of true luxury.
             </p>
 
             {/* Expectations */}
-            <div className="mb-10">
+            <div className="mb-10" data-stagger>
               <h3 className="font-sans text-sm font-semibold tracking-wide uppercase mb-4 text-foreground">
                 What you can expect
               </h3>
@@ -68,7 +71,7 @@ export function AboutSection() {
             </div>
 
             {/* Demographics */}
-            <div className="card-luxury">
+            <div className="card-luxury" data-stagger>
               <h3 className="font-sans text-xs font-semibold tracking-wide uppercase mb-4 text-muted-foreground">
                 Audience Insights
               </h3>
@@ -89,6 +92,6 @@ export function AboutSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

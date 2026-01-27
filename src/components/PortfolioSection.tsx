@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ExternalLink, X, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Section } from "@/components/Section";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
@@ -95,22 +96,24 @@ export function PortfolioSection() {
   const currentItem = portfolioItems.find((item) => item.id === selectedItem);
 
   return (
-    <section id="portfolio" className="section-padding bg-background">
+    <Section id="signature" className="bg-background">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <div className="label-accent mb-4">Portfolio</div>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-6">
-            Select Collaborations
+          <div className="label-accent mb-4" data-stagger>
+            Signature
+          </div>
+          <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-6" data-stagger>
+            Select collaborations
           </h2>
-          <p className="text-muted-foreground font-sans text-lg">
+          <p className="text-muted-foreground font-sans text-lg" data-stagger>
             A curated selection of brand partnerships across luxury, beauty, and
             lifestyle categories.
           </p>
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-16" data-stagger>
           {portfolioItems.map((item) => (
             <button
               key={item.id}
@@ -137,7 +140,7 @@ export function PortfolioSection() {
         </div>
 
         {/* Brand Partners */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-stagger>
           <h3 className="font-sans text-xs font-semibold tracking-wide uppercase mb-8 text-muted-foreground">
             Trusted by
           </h3>
@@ -157,7 +160,7 @@ export function PortfolioSection() {
         </div>
 
         {/* Testimonial */}
-        <div className="max-w-3xl mx-auto card-luxury text-center">
+        <div className="max-w-3xl mx-auto card-luxury text-center" data-stagger>
           <Quote className="w-8 h-8 text-accent/30 mx-auto mb-6" />
           <blockquote className="font-serif text-xl md:text-2xl font-medium leading-relaxed mb-6 text-foreground">
             "{testimonial.quote}"
@@ -225,6 +228,6 @@ export function PortfolioSection() {
           </div>
         )}
       </div>
-    </section>
+    </Section>
   );
 }
