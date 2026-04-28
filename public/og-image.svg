@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Pandora Rose</title>
+  <desc id="desc">Creator identity and editorial content brand preview.</desc>
+  <rect width="1200" height="630" fill="#0d111a"/>
+  <rect x="64" y="64" width="1072" height="502" fill="none" stroke="#3a4352" stroke-width="1"/>
+  <text x="120" y="235" fill="#e6ebf1" font-family="Georgia, serif" font-size="82" letter-spacing="-1">Pandora Rose</text>
+  <text x="124" y="314" fill="#91bfc4" font-family="Arial, sans-serif" font-size="18" letter-spacing="8">CREATOR IDENTITY / EDITORIAL CONTENT</text>
+  <text x="124" y="398" fill="#a5afbb" font-family="Arial, sans-serif" font-size="30">A polished creator presence, built with control.</text>
+  <line x1="124" y1="462" x2="360" y2="462" stroke="#91bfc4" stroke-width="1"/>
+</svg>

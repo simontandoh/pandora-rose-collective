@@ -1,25 +1,16 @@
-import { Download, Instagram, Play } from "lucide-react";
-import type { RefObject } from "react";
-import { HeroCanvas } from "@/components/HeroCanvas";
 import heroImage from "@/assets/hero-portrait.jpg";
-import type { HeroCanvasHandle } from "@/types/hero-canvas";
 
-const stats = [
-  { label: "Instagram", value: "186K" },
-  { label: "TikTok", value: "300K+" },
-  { label: "Campaigns", value: "UGC + Brand" },
+const proofPoints = [
+  "Creator-led presence",
+  "AI-assisted editorial output",
+  "Brand-safe visual direction",
 ];
 
-export function HeroSection({ canvasRef }: { canvasRef: RefObject<HeroCanvasHandle | null> }) {
+export function HeroSection() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      const lenis = window.__lenis;
-      if (lenis) {
-        lenis.scrollTo(element, { offset: 0, immediate: false });
-      } else {
-        element.scrollIntoView({ behavior: "auto" });
-      }
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -27,82 +18,76 @@ export function HeroSection({ canvasRef }: { canvasRef: RefObject<HeroCanvasHand
     <section
       id="home"
       data-hero
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen items-center overflow-hidden border-b border-border"
     >
-      <HeroCanvas ref={canvasRef} />
       <div className="absolute inset-0">
         <img
           src={heroImage}
           alt="Pandora Rose portrait"
-          className="w-full h-full object-cover object-[70%_center] opacity-60"
+          className="h-full w-full object-cover object-[70%_center] opacity-32 md:opacity-42"
         />
       </div>
       <div className="absolute inset-0 bg-hero-veil" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-border" />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto pl-2 pr-6 md:pl-4 md:pr-10 lg:pl-6 lg:pr-16 w-full pt-32 pb-20 flex justify-start">
-        <div className="max-w-lg text-left md:pr-16 lg:pr-24">
-          {/* Label */}
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl px-5 pb-20 pt-32 md:px-10 lg:px-16">
+        <div className="max-w-2xl text-left">
           <div className="label-accent mb-6" data-reveal>
-            Content Creator & Brand Partner
+            Creator identity / content direction
           </div>
 
-          {/* Headline */}
           <h1
-            className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05] tracking-tight mb-6"
+            className="mb-6 font-serif text-5xl font-medium leading-[1.02] tracking-tight md:text-6xl lg:text-7xl"
             data-reveal
           >
-            Soft luxury.
+            A polished creator presence,
             <br />
-            <span className="text-champagne">Elevated living.</span>
+            <span className="text-accent">built with control.</span>
           </h1>
 
-          {/* Subheadline */}
           <p
-            className="text-lg md:text-xl text-muted-foreground font-sans font-light leading-relaxed mb-10"
+            className="mb-10 max-w-xl text-base leading-8 text-muted-foreground md:text-lg"
             data-reveal
           >
-            Premium content creation for discerning brands. Authentic storytelling
-            that resonates with a global audience seeking refined aesthetics.
+            Pandora Rose is a creator brand for considered identity, AI-assisted
+            editorial content, and commercially usable visual systems. Personal
+            enough to feel human, restrained enough to hold a premium lane.
           </p>
 
-          {/* Stats */}
-          <div className="flex flex-wrap gap-3 mb-10" data-reveal>
-            {stats.map((stat) => (
-              <div key={stat.label} className="stat-chip">
-                {stat.label === "Instagram" && <Instagram className="w-4 h-4 text-accent" />}
-                {stat.label === "TikTok" && <Play className="w-4 h-4 text-accent" />}
-                <span className="font-medium text-foreground">{stat.value}</span>
-                <span className="text-muted-foreground">{stat.label}</span>
+          <div className="mb-10 flex flex-wrap gap-3" data-reveal>
+            {proofPoints.map((point) => (
+              <div key={point} className="stat-chip">
+                {point}
               </div>
             ))}
           </div>
 
-          {/* CTAs */}
-          <div className="flex flex-wrap gap-4" data-reveal>
+          <div className="flex flex-wrap items-center gap-5" data-reveal>
             <button
-              onClick={() => scrollToSection("#work")}
+              onClick={() => scrollToSection("#contact")}
               className="btn-primary"
             >
-              Work With Me
+              Start an Inquiry
             </button>
             <a
-              href="#"
-              className="btn-secondary inline-flex items-center gap-2"
-              onClick={(e) => e.preventDefault()}
+              href="#signature"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("#signature");
+              }}
+              className="btn-ghost"
             >
-              <Download className="w-4 h-4" />
-              Download Media Kit
+              View content surface
             </a>
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2" data-reveal>
+      <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:block" data-reveal>
         <button
           onClick={() => scrollToSection("#about")}
           className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          aria-label="Scroll to about section"
         >
           <span className="text-xs font-sans tracking-widest uppercase">Scroll</span>
           <div className="w-px h-8 bg-border" />
