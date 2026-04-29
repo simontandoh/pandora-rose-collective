@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Pandora Rose</title>
+  <desc id="desc">Premium creator brand social preview.</desc>
+  <rect width="1200" height="630" fill="#150f12"/>
+  <rect x="72" y="72" width="1056" height="486" fill="none" stroke="#8f7440" stroke-width="1"/>
+  <rect x="96" y="96" width="1008" height="438" fill="none" stroke="#3d2c33" stroke-width="1"/>
+  <text x="120" y="265" fill="#f0e7dc" font-family="Georgia, serif" font-size="92" letter-spacing="-1">Pandora Rose</text>
+  <text x="126" y="340" fill="#c5a66a" font-family="Arial, sans-serif" font-size="18" letter-spacing="8">PREMIUM CONTENT CREATOR</text>
+  <text x="126" y="416" fill="#cfc1b7" font-family="Arial, sans-serif" font-size="30">Soft luxury. Elevated living.</text>
+</svg>
