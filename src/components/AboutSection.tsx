@@ -1,18 +1,18 @@
-import { Check } from "lucide-react";
+import { Check, Users, Globe, Clock } from "lucide-react";
 import aboutImage from "@/assets/about-portrait.jpg";
 import { Section } from "@/components/Section";
 
 const expectations = [
-  "Taste-led creative systems, not disposable posts",
-  "AI-assisted output with human editorial control",
-  "Commercially safe concepts for future partnerships",
-  "Clear surfaces for identity, content, and offers",
+  "Taste-led creative direction",
+  "Fast turnaround (7-14 days)",
+  "Brand-safe, premium execution",
+  "Flexible usage rights options",
 ];
 
-const principles = [
-  { label: "Tone", value: "controlled, personal, commercially aware" },
-  { label: "Output", value: "short-form concepts, editorial stills, creator POV" },
-  { label: "Future", value: "built to support partnerships and productized offers" },
+const demographics = [
+  { icon: Users, label: "Primary Age", value: "25-44" },
+  { icon: Globe, label: "Top Markets", value: "US, UK, UAE" },
+  { icon: Clock, label: "Avg. Watch Time", value: "45 sec" },
 ];
 
 export function AboutSection() {
@@ -20,39 +20,43 @@ export function AboutSection() {
     <Section id="about" className="bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Image */}
           <div className="relative" data-stagger>
             <div className="aspect-[3/4] overflow-hidden bg-card border border-border/40">
               <img
                 src={aboutImage}
-                alt="Pandora Rose editorial portrait"
+                alt="Pandora Rose - About"
                 className="w-full h-full object-cover"
               />
             </div>
+            {/* Accent detail */}
             <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-accent/30" />
           </div>
 
+          {/* Content */}
           <div>
             <div className="label-accent mb-4" data-stagger>
               About
             </div>
             <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-6" data-stagger>
-              A creator brand with an editorial operating system.
+              Creating moments of quiet luxury
             </h2>
             <p className="text-muted-foreground font-sans text-lg leading-relaxed mb-8" data-stagger>
-              Pandora Rose is being shaped as a polished personality brand: a
-              controlled place for identity, AI-led content experiments, and
-              future commercial work without looking like a template creator page.
+              I'm Pandora Rose - a content creator and brand partner specializing in
+              elevated lifestyle, beauty, and travel content. My work bridges the
+              gap between aspirational aesthetics and authentic storytelling,
+              connecting premium brands with an engaged, discerning audience.
             </p>
             <p className="text-muted-foreground font-sans leading-relaxed mb-10" data-stagger>
-              The current audience is intentionally small while the packaging is
-              upgraded. The point is to make the brand feel established from day
-              one, with enough restraint to grow into offers, collaborations, and
-              studio-adjacent opportunities later.
+              With a refined visual language and commitment to excellence, I help
+              brands tell their stories through content that feels effortless yet
+              intentional - the hallmark of true luxury.
             </p>
 
+            {/* Expectations */}
             <div className="mb-10" data-stagger>
               <h3 className="font-sans text-sm font-semibold tracking-wide uppercase mb-4 text-foreground">
-                Operating principles
+                What you can expect
               </h3>
               <div className="grid sm:grid-cols-2 gap-3">
                 {expectations.map((item) => (
@@ -66,15 +70,21 @@ export function AboutSection() {
               </div>
             </div>
 
+            {/* Demographics */}
             <div className="card-luxury" data-stagger>
               <h3 className="font-sans text-xs font-semibold tracking-wide uppercase mb-4 text-muted-foreground">
-                Positioning Notes
+                Audience Insights
               </h3>
-              <div className="space-y-5">
-                {principles.map((item) => (
-                  <div key={item.label} className="border-t border-border pt-4 first:border-t-0 first:pt-0">
-                    <div className="label-accent mb-2">{item.label}</div>
-                    <p className="text-sm leading-6 text-foreground">{item.value}</p>
+              <div className="grid grid-cols-3 gap-4">
+                {demographics.map((item) => (
+                  <div key={item.label} className="text-center">
+                    <item.icon className="w-5 h-5 mx-auto mb-2 text-accent" />
+                    <div className="text-sm font-medium text-foreground">
+                      {item.value}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {item.label}
+                    </div>
                   </div>
                 ))}
               </div>

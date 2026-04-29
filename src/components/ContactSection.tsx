@@ -1,19 +1,28 @@
 import { useState } from "react";
-import { Check, Mail } from "lucide-react";
+import { Send, Check, Calendar, Mail, Clock } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Section } from "@/components/Section";
 
 const budgetOptions = [
-  "Exploratory / scope needed",
-  "Small content sprint",
-  "Ongoing content system",
-  "Future partnership",
+  "Under $1,000",
+  "$1,000 - $2,500",
+  "$2,500 - $5,000",
+  "$5,000 - $10,000",
+  "$10,000+",
 ];
 
 const deliverableOptions = [
-  "Creator content sprint",
-  "Editorial content system",
-  "Partnership inquiry",
-  "Studio-adjacent conversation",
+  "UGC Package",
+  "Instagram Reels",
+  "TikTok Videos",
+  "Stories Campaign",
+  "Full Partnership",
   "Other",
 ];
 
@@ -30,6 +39,7 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // Simulate form submission
     setIsSubmitted(true);
   };
 
@@ -44,25 +54,27 @@ export function ContactSection() {
   return (
     <Section id="contact" className="bg-background">
       <div className="max-w-4xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-12">
           <div className="label-accent mb-4" data-stagger>
             Contact
           </div>
           <h2 className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-6" data-stagger>
-            Start the right conversation.
+            Let's create together
           </h2>
           <p className="text-muted-foreground font-sans text-lg" data-stagger>
-            This form is a front-end intake stub until a live mail workflow is
-            connected. Use it to shape the brief, or email directly.
+            Ready to elevate your brand? Share your project details below.
           </p>
         </div>
 
+        {/* Form */}
         {!isSubmitted ? (
           <form
             onSubmit={handleSubmit}
-            className="mx-auto max-w-2xl space-y-8 border border-border bg-card p-6 md:p-10"
+            className="max-w-2xl mx-auto space-y-8"
             data-stagger
           >
+            {/* Name & Email Row */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label
@@ -97,11 +109,12 @@ export function ContactSection() {
                   value={formData.email}
                   onChange={handleChange}
                   className="input-luxury"
-                  placeholder="you@example.com"
+                  placeholder="you@company.com"
                 />
               </div>
             </div>
 
+            {/* Company */}
             <div>
               <label
                 htmlFor="company"
@@ -116,10 +129,11 @@ export function ContactSection() {
                 value={formData.company}
                 onChange={handleChange}
                 className="input-luxury"
-                placeholder="Brand or project name"
+                placeholder="Brand name"
               />
             </div>
 
+            {/* Budget & Deliverable Row */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label
@@ -128,20 +142,28 @@ export function ContactSection() {
                 >
                   Budget Range
                 </label>
-                <select
-                  id="budget"
-                  name="budget"
+                <Select
                   value={formData.budget}
-                  onChange={handleChange}
-                  className="input-luxury"
+                  onValueChange={(value) => setFormData({ ...formData, budget: value })}
                 >
-                  <option value="">Select one</option>
-                  {budgetOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger
+                    id="budget"
+                    className="input-luxury rounded-full border border-border/60 px-4 py-3 text-left"
+                  >
+                    <SelectValue placeholder="Select budget" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-2xl border-border/60 bg-card/95 text-foreground shadow-xl backdrop-blur">
+                    {budgetOptions.map((option) => (
+                      <SelectItem
+                        key={option}
+                        value={option}
+                        className="rounded-xl focus:bg-accent/20 focus:text-foreground"
+                      >
+                        {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <label
@@ -150,23 +172,34 @@ export function ContactSection() {
                 >
                   Deliverable Type
                 </label>
-                <select
-                  id="deliverable"
-                  name="deliverable"
+                <Select
                   value={formData.deliverable}
-                  onChange={handleChange}
-                  className="input-luxury"
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, deliverable: value })
+                  }
                 >
-                  <option value="">Select one</option>
-                  {deliverableOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger
+                    id="deliverable"
+                    className="input-luxury rounded-full border border-border/60 px-4 py-3 text-left"
+                  >
+                    <SelectValue placeholder="Select type" />
+                  </SelectTrigger>
+                  <SelectContent className="rounded-2xl border-border/60 bg-card/95 text-foreground shadow-xl backdrop-blur">
+                    {deliverableOptions.map((option) => (
+                      <SelectItem
+                        key={option}
+                        value={option}
+                        className="rounded-xl focus:bg-accent/20 focus:text-foreground"
+                      >
+                        {option}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 
+            {/* Message */}
             <div>
               <label
                 htmlFor="message"
@@ -182,13 +215,15 @@ export function ContactSection() {
                 value={formData.message}
                 onChange={handleChange}
                 className="input-luxury resize-none"
-                placeholder="Tell me what needs to exist, who it is for, and what decision you are trying to make."
+                placeholder="Tell me about your campaign goals, timeline, and any specific requirements..."
               />
             </div>
 
+            {/* Submit */}
             <div className="text-center pt-4">
-              <button type="submit" className="btn-primary">
-                Send Intake
+              <button type="submit" className="btn-primary inline-flex items-center gap-2">
+                <Send className="w-4 h-4" />
+                Send Inquiry
               </button>
             </div>
           </form>
@@ -198,31 +233,57 @@ export function ContactSection() {
               <Check className="w-8 h-8 text-accent" />
             </div>
             <h3 className="font-serif text-2xl font-medium mb-4">
-              Intake noted
+              Message received
             </h3>
             <p className="text-muted-foreground">
-              [COPY NEEDED: connect a real email workflow before launch. For
-              now, use the direct email below.]
+              Thank you for reaching out. Expect a reply within 1-2 business
+              days.
             </p>
           </div>
         )}
 
+        {/* Signature Call */}
         <div className="mt-16" data-stagger>
-          <div className="label-accent mb-4 text-center">Direct</div>
+          <div className="label-accent mb-4 text-center">Signature</div>
           <div className="bg-card/40 border border-border/50 p-8 md:p-12">
             <div className="max-w-2xl mx-auto text-center">
-              <Mail className="w-8 h-8 text-accent mx-auto mb-4" />
-              <h3 className="font-serif text-2xl font-medium mb-4">Email Pandora</h3>
+              <Calendar className="w-10 h-10 text-accent mx-auto mb-4" />
+              <h3 className="font-serif text-2xl font-medium mb-4">
+                Book a collaboration call
+              </h3>
               <p className="text-muted-foreground font-sans text-base mb-8">
-                For early collaborations, content systems, and creator-brand
-                positioning conversations.
+                For brand campaigns, UGC packages, and premium partnerships. Let's
+                discuss how we can bring your vision to life.
               </p>
-              <a
-                href="mailto:rosadorateam@gmail.com"
-                className="btn-secondary inline-flex"
-              >
-                rosadorateam@gmail.com
-              </a>
+              <div className="aspect-video max-w-xl mx-auto bg-background/40 border border-dashed border-border flex items-center justify-center">
+                <div className="text-center p-8">
+                  <p className="text-muted-foreground text-sm mb-4">
+                    Calendly Inline Widget
+                  </p>
+                  <code className="text-xs bg-card px-3 py-2 rounded text-foreground/70">
+                    calendly.com/pandorarose
+                  </code>
+                </div>
+              </div>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 mt-8">
+                <div className="flex items-center gap-3 text-muted-foreground">
+                  <Mail className="w-5 h-5 text-accent" />
+                  <span className="font-sans text-sm">Prefer email?</span>
+                  <a
+                    href="mailto:rosadorateam@gmail.com"
+                    className="font-sans text-sm font-medium text-foreground hover:text-accent transition-colors underline underline-offset-4"
+                  >
+                    rosadorateam@gmail.com
+                  </a>
+                </div>
+                <div className="hidden md:block w-px h-6 bg-border" />
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Clock className="w-4 h-4 text-accent" />
+                  <span className="font-sans text-sm">
+                    48-hour turnaround options available
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -3,8 +3,8 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "About", href: "#about" },
-  { label: "Content", href: "#signature" },
-  { label: "Offers", href: "#work" },
+  { label: "Work", href: "#work" },
+  { label: "Signature", href: "#signature" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -23,7 +23,12 @@ export function Header() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const lenis = window.__lenis;
+      if (lenis) {
+        lenis.scrollTo(element, { offset: -10, immediate: false });
+      } else {
+        element.scrollIntoView({ behavior: "auto" });
+      }
     }
     setIsMobileMenuOpen(false);
   };
@@ -32,22 +37,29 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 border-b border-border py-4"
-          : "bg-transparent py-5"
+          ? "bg-background/85 backdrop-blur-md border-b border-border/40 py-4"
+          : "bg-transparent py-6"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 md:px-10 lg:px-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between">
+        {/* Wordmark */}
         <a
           href="#"
           onClick={(e) => {
             e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
+            const lenis = window.__lenis;
+            if (lenis) {
+              lenis.scrollTo(0, { immediate: false });
+            } else {
+              window.scrollTo({ top: 0, behavior: "auto" });
+            }
           }}
-          className="font-serif text-xl font-medium tracking-tight text-foreground md:text-2xl"
+          className="font-serif text-xl md:text-2xl font-medium tracking-tight text-foreground"
         >
           Pandora Rose
         </a>
 
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
             <a
@@ -63,18 +75,18 @@ export function Header() {
             </a>
           ))}
           <button
-            onClick={() => scrollToSection("#contact")}
+            onClick={() => scrollToSection("#work")}
             className="btn-primary"
           >
-            Inquire
+            Work With Me
           </button>
         </nav>
 
+        {/* Mobile Menu Button */}
         <button
-          className="md:hidden rounded-full border border-border p-2"
+          className="md:hidden p-2"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-expanded={isMobileMenuOpen}
-          aria-label="Toggle navigation"
+          aria-label="Toggle menu"
         >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6 text-foreground" />
@@ -84,8 +96,9 @@ export function Header() {
         </button>
       </div>
 
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="absolute left-0 right-0 top-full border-b border-border bg-background md:hidden">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border/50 animate-fade-in">
           <nav className="flex flex-col px-6 py-8 gap-6">
             {navItems.map((item) => (
               <a
@@ -101,10 +114,10 @@ export function Header() {
               </a>
             ))}
             <button
-              onClick={() => scrollToSection("#contact")}
+              onClick={() => scrollToSection("#work")}
               className="btn-primary w-full text-center mt-4"
             >
-              Inquire
+              Work With Me
             </button>
           </nav>
         </div>
